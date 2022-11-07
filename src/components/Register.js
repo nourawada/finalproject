@@ -11,8 +11,8 @@ class Register extends Component{
         userName:'',
         errores:''
     }
-    
 }
+
 registerUser(email, pass, userName){
     auth.createUserWithEmailAndPassword(email, pass)
     .then(res => {
@@ -20,7 +20,6 @@ registerUser(email, pass, userName){
             owner: email,
             userName: userName,
             createdAt: Date.now()
-
         })
         .then(()=> {
             this.setState({
@@ -31,10 +30,9 @@ registerUser(email, pass, userName){
             })
             this.props.navigation.navigate('Login')
         })
-        
     })    
      .catch( error => {
-       this.setState({error: 'Fallo en el registro.'})
+       this.setState({errores: error.message})
      })
   }
  
@@ -42,6 +40,8 @@ render(){
     return(
         <View>
             <Text>Registro</Text>
+            <Text>{this.state.errores}</Text>
+
             <View>
                 <TextInput
                     placeholder='email'
@@ -70,6 +70,5 @@ render(){
         
     )
 }
-
 }
 export default Register
