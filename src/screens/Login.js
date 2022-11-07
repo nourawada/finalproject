@@ -13,6 +13,13 @@ class Login extends Component{
         }
         
     }
+    componentDidMount(){
+        auth.onAuthStateChanged(user =>{
+            if(user){
+                this.props.navigation.navigate('Home')
+            }
+        })
+    }
     loginUser(email, pass){
         auth.signInWithEmailAndPassword(email, pass)
             .then( res => {
@@ -20,10 +27,10 @@ class Login extends Component{
             })
             .catch(error => console.log(error))
     }
-render(){
+    render(){
     return(
         <View>
-            <Text>Registro</Text>
+            <Text>Login</Text>
             <View>
                 <TextInput
                     placeholder='email'
