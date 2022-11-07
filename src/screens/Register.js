@@ -9,7 +9,8 @@ class Register extends Component{
         email: '',
         pass:'',
         userName:'',
-        errores:''
+        errores:'',
+        bio: ''
     }
 }
 

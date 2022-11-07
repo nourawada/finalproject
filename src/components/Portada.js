@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {auth, db} from '../firebase/config'
 import {View, Text, TouchableOpacity, StyleSheet} from "react-native";
 
-class Home extends Component {
+class Portada extends Component {
     constructor(){
         super()
         this.state = {
@@ -33,4 +33,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Home
+export default Portada
