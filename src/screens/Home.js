@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {auth, db} from '../firebase/config'
 import {View, Text, TouchableOpacity, StyleSheet} from "react-native";
-import HomeMenu from "../components/HomeMenu";
+
 
 class Home extends Component {
     constructor(){
@@ -15,7 +15,6 @@ class Home extends Component {
         return(
             <View>
                 <Text>Hola Mundo!</Text>
-                
             </View>
         );
     }

@@ -6,7 +6,7 @@ import HomeMenu from './src/components/HomeMenu'
 import Portada from './src/components/Portada';
 import Register from './src/screens/Register';
 import Login from './src/screens/Login';
-import Home from './src/screens/Home';
+
 
 
 
@@ -19,7 +19,7 @@ function App(){
     <Stack.Screen name="Portada" component={ Portada } />
        <Stack.Screen name="Login" component={ Login } />
        <Stack.Screen name="Register" component={ Register } />
-       <Stack.Screen name="HomeMenu" component={ HomeMenu } />
+       <Stack.Screen name="HomeMenu" component={ HomeMenu } options= {{ headerShown : false}}/>
     
     </Stack.Navigator>
     </NavigationContainer>
