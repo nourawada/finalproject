@@ -3,6 +3,8 @@ import Post from "../components/Post";
 import {auth, db} from '../firebase/config'
 import {View, Text, TouchableOpacity, StyleSheet} from "react-native";
 import {FlatList} from 'react-native-web';
+import { BottomTabBarHeightCallbackContext } from "@react-navigation/bottom-tabs";
+
 
 
 
@@ -33,7 +35,7 @@ class Home extends Component {
     }
     render(){
         return(
-            <View>
+            <View style={styles.conteiner} >
                 <Text>Lista de posteos</Text>
                 <FlatList 
                         data={this.state.posts}
@@ -46,10 +48,16 @@ class Home extends Component {
     }
 };
 const styles = StyleSheet.create({
+    conteiner:{flex:1,
+        backgroundColor: 'green'
+
+    },
     title:{
         fontSize: 22,
         color: "red"
     }
 })
+
+
 
 export default Home
