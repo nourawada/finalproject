@@ -40,6 +40,7 @@ class Home extends Component {
                         keyExtractor={ onePost => onePost.id.toString()}
                         renderItem={ ({item}) => <Post postData={item} />}
                     /> 
+                    <Text onPress={()=> this.props.navigation.navigate('Login')}>Login</Text>
             </View>
         );
     }

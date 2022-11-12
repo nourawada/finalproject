@@ -10,7 +10,8 @@ class Register extends Component{
         pass:'',
         userName:'',
         errores:'',
-        bio: ''
+        bio: '',
+        photo:''
     }
 }
 
@@ -28,7 +29,8 @@ registerUser(email, pass, userName){
                 pass:'',
                 userName:'',
                 errores:'',
-                bio:''
+                bio:'',
+                photo:''
             })
             this.props.navigation.navigate('Login')
         })
