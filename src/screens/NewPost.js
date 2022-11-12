@@ -4,6 +4,7 @@ import {View, Text, TouchableOpacity, StyleSheet} from "react-native";
 import Camara from '../components/Camara'
 import {TextInput} from 'react-native-web'
 
+
 class NewPost extends Component {
     constructor(){
         super()
@@ -13,6 +14,7 @@ class NewPost extends Component {
             showCamera: true,
         }
     };
+    //
     createPost(description, photo){
         db.collection('posts').add({
                 owner: auth.currentUser.email, //deberia ser el usuario registrado. auth.currentUser
@@ -32,7 +34,7 @@ class NewPost extends Component {
 
     onImageUpload(url){
         this.setState({
-            url: url,
+            photo:url,
             showCamera: false,
         })
     }
@@ -66,6 +68,7 @@ class NewPost extends Component {
         );
     }
 };
+
 
 
 
