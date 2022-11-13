@@ -7,8 +7,16 @@ class Post extends Component {
     constructor(props){
         super(props)
         this.state = {
-            numeroDeLikes: this.props.postData.data.length,
-            likes:false
+            numeroDeLikes: this.props.postData.data.likes.length,
+            milike:false,
+            comentarios: this.props.postData.data.comentarios
+        }
+    }
+    componentDidMount(){
+        if(this.props.postData.data.likes.includes(auth.currentUser.email)){ 
+            this.setState({
+                milike:true
+            })
         }
     }
 
@@ -22,7 +30,7 @@ class Post extends Component {
             })
             .then(()=> this.setState({
                 numeroDeLikes: this.state.numeroDeLikes +1,
-                likes: true, 
+                milike: true, 
                 })
             )
             .catch(e=>console.log(e))
@@ -41,7 +49,7 @@ class Post extends Component {
         })
         .then(()=> this.setState({
             numeroDeLikes: this.state.numeroDeLikes -1,
-            likes: false, 
+            milike: false, 
             })
         )
         .catch(e=>console.log(e))
@@ -59,7 +67,7 @@ class Post extends Component {
                     resizeMode='cover'
                 />
                 <Text> {this.props.postData.data.description} </Text>
-                { this.state.likes ? 
+                { this.state.milike ? 
                     <TouchableOpacity onPress={ ()=> this.unlike() }>
                         <Text>No me gusta más</Text>
                     </TouchableOpacity>
