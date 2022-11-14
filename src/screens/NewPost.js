@@ -12,6 +12,8 @@ class NewPost extends Component {
             description:'',
             photo:'',
             showCamera: true,
+            likes: [],
+            comentarios:[]
         }
     };
     //
@@ -20,11 +22,15 @@ class NewPost extends Component {
                 owner: auth.currentUser.email, //deberia ser el usuario registrado. auth.currentUser
                 description: description,
                 photo: photo,
+                likes: this.state.likes,
+                comentarios: this.state.comentarios,
                 createdAt: Date.now()
             })
             .then(() => {
                 this.setState({
                     description:'',
+                    likes: [],
+                    comentarios: []
                 })
                 this.props.navigation.navigate('Home')
             })

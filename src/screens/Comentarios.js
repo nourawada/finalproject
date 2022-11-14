@@ -1,7 +1,8 @@
 import React, {Component} from "react";
 import {auth, db} from '../firebase/config'
 import {View, Text, TouchableOpacity, StyleSheet} from "react-native";
-import {FlatList} from "react-native-web"
+import {FlatList, TextInput} from "react-native-web"
+import firebase from "firebase";
 
 
 class Comentarios extends Component {
@@ -10,14 +11,65 @@ class Comentarios extends Component {
         super(props)
         this.state = {
             //lo que le va a llegar a comentarios desde post
-            comentarios: this.props.comentarios
+            comentarios: this.props.comentarios, //el array que te llega con todos los comentarios anteriores
+            comentario: '', //lo que esribe la persona en el input que va a ser un string vacio
+            data: '', //seria toda la data de los posteos que tiene el id que queremos buscar
+            id: this.props.postData //busca el id que coincide con los comentarios 
         }
     };
+    //se va a buscar a posteos el posteo que tenga el id y lo que quiero recuperar es toda la data
+    componentDidMount(){
+        db.collection('posts').doc(this.state.id).onSnapshot(
+            doc=>{
+                this.setState({
+                    data: doc.data(),
+                })
+            })
+    };
+    subirMiComentario(comentario){
+        db.collection("posts")
+        .doc(this.state.id)
+        .update({
+            comentarios: firebase.firestore.FieldValue.arrayUnion({owner:auth.currentUser.email,comentario:comentario,createdAt: Date.now()})  
+    })
+    .then(() => {
+        this.setState({
+            comentario: "",     
+    }) })
+    }
 
     render(){
         return(
             <View>
-            <Text>Hola Mundo</Text>      
+                <Text> Comentarios del posteo actual </Text>
+                {this.state.comentario == 0 ?
+                <View > 
+                <Text> Aún no hay comentarios. Sé el primero en opinar </Text>
+                
+                </View>
+                :
+                <FlatList 
+                data={this.state.comentarios}
+                keyExtractor={ unComentario => unComentario.createdAt.toString()}
+                renderItem={({item}) => 
+                <Text>{({item}) => <Text>{item.owner} comento: {item.comentario}</Text>}</Text>
+                }
+                />
+                }
+            <TextInput 
+            placeholder='Agregar comentario'
+            keyboardType='default'
+            onChangeText={comentario=> this.setState({comentario:comentario})}
+            value={this.state.comentario}
+            />
+            {this.state.comentario == '' ?
+            <TouchableOpacity >
+            <Text> Escriba para comentar </Text>
+            </TouchableOpacity> :
+            <TouchableOpacity onPress={()=> this.subirMiComentario(this.state.comentario) }>
+            <Text>Subir comentario</Text>
+            </TouchableOpacity> 
+       } 
         </View>
         );
     }

@@ -7,19 +7,11 @@ class Post extends Component {
     constructor(props){
         super(props)
         this.state = {
-            numeroDeLikes: this.props.postData.data.likes.length,
-            milike:false,
-            comentarios: this.props.postData.data.comentarios
+            numeroDeLikes: this.props.postData.data.length,
+            likes:false,
+            numeroComentarios: this.props.postData.data.comentarios
         }
     }
-    componentDidMount(){
-        if(this.props.postData.data.likes.includes(auth.currentUser.email)){ 
-            this.setState({
-                milike:true
-            })
-        }
-    }
-
 
     like(){
      
@@ -30,12 +22,11 @@ class Post extends Component {
             })
             .then(()=> this.setState({
                 numeroDeLikes: this.state.numeroDeLikes +1,
-                milike: true, 
+                likes: true, 
                 })
             )
             .catch(e=>console.log(e))
     }
-
 
 
 
@@ -49,7 +40,7 @@ class Post extends Component {
         })
         .then(()=> this.setState({
             numeroDeLikes: this.state.numeroDeLikes -1,
-            milike: false, 
+            likes: false, 
             })
         )
         .catch(e=>console.log(e))
@@ -59,6 +50,7 @@ class Post extends Component {
 
     render(){
         console.log(this.props);
+        console.log(this.props.postData);
         return(
             <View>
                 <Image 
@@ -67,7 +59,7 @@ class Post extends Component {
                     resizeMode='cover'
                 />
                 <Text> {this.props.postData.data.description} </Text>
-                { this.state.milike ? 
+                { this.state.likes ? 
                     <TouchableOpacity onPress={ ()=> this.unlike() }>
                         <Text>No me gusta más</Text>
                     </TouchableOpacity>
@@ -77,6 +69,10 @@ class Post extends Component {
                     </TouchableOpacity>
                 }
                  <Text> {this.state.numeroDeLikes} likes</Text>
+
+                 <TouchableOpacity onPress={()=>this.props.navigation.navigate('Comentarios', {id:this.props.id , data:this.props.postData.data})}>
+                    <Text>Ver Comentarios</Text>
+                 </TouchableOpacity>
             </View>
         )
     }

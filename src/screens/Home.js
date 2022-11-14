@@ -40,10 +40,10 @@ class Home extends Component {
                 <FlatList 
                         data={this.state.posts}
                         keyExtractor={ onePost => onePost.id.toString()}
-                        renderItem={ ({item}) => <Post postData={item} />}
+                        renderItem={ ({item})  => <Post postData={item} navigation={this.props.navigation} />}
                     /> 
                     <Text onPress={()=> this.props.navigation.navigate('Login')}>Login</Text>
-            </View>
+            </View> 
         );
     }
 };
