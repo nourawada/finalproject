@@ -18,12 +18,15 @@ class Login extends Component{
             .then( res => {
                 this.props.navigation.navigate('HomeMenu')
             })
-            .catch(error => console.log(error))
+            .catch( error => {
+                this.setState({errores: error.message})
+              })
     }
     render(){
     return(
         <View>
             <Text>Login</Text>
+            <Text>{this.state.errores}</Text>
             <View>
                 <TextInput
                     placeholder='email'
