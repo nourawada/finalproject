@@ -7,7 +7,7 @@ class Post extends Component {
     constructor(props){
         super(props)
         this.state = {
-            numeroDeLikes: this.props.postData.data.length,
+            numeroDeLikes: this.props.postData.data.likes.length,
             likes:false,
             numeroComentarios: this.props.postData.data.comentarios
         }
@@ -28,10 +28,6 @@ class Post extends Component {
             .catch(e=>console.log(e))
     }
 
-
-
-
-
     unlike(){
         db.collection('posts')
         .doc(this.props.postData.id) //identificar el documento
@@ -49,8 +45,6 @@ class Post extends Component {
     }
 
     render(){
-        console.log(this.props);
-        console.log(this.props.postData);
         return(
             <View>
                 <Image 
@@ -70,7 +64,7 @@ class Post extends Component {
                 }
                  <Text> {this.state.numeroDeLikes} likes</Text>
 
-                 <TouchableOpacity onPress={()=>this.props.navigation.navigate('Comentarios', {id:this.props.id, data:this.props.postData.data})}>
+                 <TouchableOpacity onPress={()=>this.props.navigation.navigate('Comentarios', {id:this.props.postData.id})}>
                     <Text>Ver Comentarios</Text>
                  </TouchableOpacity>
             </View>
