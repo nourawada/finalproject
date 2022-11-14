@@ -7,7 +7,7 @@ class Post extends Component {
     constructor(props){
         super(props)
         this.state = {
-            numeroDeLikes: this.props.postData.data.length,
+            numeroDeLikes: this.props.postData.data.likes.length,
             likes:false,
             numeroComentarios: this.props.postData.data.comentarios
         }
