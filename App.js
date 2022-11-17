@@ -7,6 +7,7 @@ import Portada from './src/components/Portada';
 import Register from './src/screens/Register';
 import Login from './src/screens/Login';
 import Comentarios from './src/screens/Comentarios';
+import ProfileUser from './src/screens/ProfileUser';
 
 
 
@@ -23,6 +24,7 @@ function App(){
        <Stack.Screen name="Register" component={ Register } />
        <Stack.Screen name="HomeMenu" component={ HomeMenu } options= {{ headerShown : false}}/>
        <Stack.Screen name="Comentarios" component={Comentarios} />
+       <Stack.Screen name="ProfileUser" component={ProfileUser} />
 
     
     </Stack.Navigator>

@@ -3,7 +3,7 @@ import Post from "../components/Post";
 import {auth, db} from '../firebase/config'
 import {View, Text, TouchableOpacity, StyleSheet} from "react-native";
 import {FlatList} from 'react-native-web';
-import { BottomTabBarHeightCallbackContext } from "@react-navigation/bottom-tabs";
+
 
 
 
@@ -42,7 +42,6 @@ class Home extends Component {
                         keyExtractor={ onePost => onePost.id.toString()}
                         renderItem={ ({item})  => <Post postData={item} navigation={this.props.navigation} />}
                     /> 
-                    <Text onPress={()=> this.props.navigation.navigate('Login')}>Login</Text>
             </View> 
         );
     }

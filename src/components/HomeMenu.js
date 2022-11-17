@@ -6,7 +6,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../screens/Home';
 import Profile from '../screens/profile';
 import NewPost from '../screens/NewPost';
-import Buscador from '../screens/Buscador'
+import Buscador from '../screens/Buscador';
+
 
 const Tab = createBottomTabNavigator();
 
