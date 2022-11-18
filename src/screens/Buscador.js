@@ -21,8 +21,7 @@ class Buscador extends Component {
 
 
 buscar(text){
-    console.log(text);
-    console.log( this.state.text);
+    
     this.setState({text:text})
     db.collection('users').where('owner', '==', text).onSnapshot(
         docs => {
@@ -56,7 +55,10 @@ render(){
             <FlatList 
                         data={this.state.posts}
                         keyExtractor={ onePost => onePost.id.toString()}
-                        renderItem={ ({item})  => <Text>{item.data.owner}</Text>}
+                        renderItem={ ({item})  =><TouchableOpacity onPress={()=>this.props.navigation.navigate('ProfileUser')}>
+                             { this.state.text == item.data.owner ?
+                     <Text>{item.data.owner}</Text> : <Text>no exsiste el usuario</Text> }
+                        </TouchableOpacity> }
                     /> 
         </View>
         )
