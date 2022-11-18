@@ -55,9 +55,7 @@ class Post extends Component {
                 />
           
                 <Text> {this.props.postData.data.description} </Text>
-                <Text onPress={()=>this.props.navigate.navigation('ProfileUser',)} >
-                {this.props.postData.data.userName}
-            </Text>
+                
                 { this.state.likes ? 
                     <TouchableOpacity onPress={ ()=> this.unlike() }>
                         <Text>No me gusta más</Text>
@@ -68,7 +66,7 @@ class Post extends Component {
                     </TouchableOpacity>
                 }
                  <Text> {this.state.numeroDeLikes} likes</Text>
-                 <Text onPress={()=>this.props.navigation.navigate('ProfileUser')} >
+                 <Text onPress={()=>this.props.navigation.navigate('ProfileUser',  { email: this.props.postData.data.owner })} >
                 {this.props.postData.data.owner}
             </Text>
                  <TouchableOpacity onPress={()=>this.props.navigation.navigate('Comentarios', {id:this.props.postData.id})}>

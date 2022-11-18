@@ -16,7 +16,8 @@ class ProfileUser extends Component {
         }
     };
     componentDidMount(){
-            db.collection('posts').where('email', '==', this.props.route.params.email).onSnapshot(
+        console.log(this.props.route);
+            db.collection('posts').where('owner', '==', this.props.route.params.email).onSnapshot(
                 docs =>{
                         let posts = [];
                    docs.forEach( doc => {
@@ -30,7 +31,7 @@ class ProfileUser extends Component {
                 })
                 }
             )
-            db.collection('users').where("email", "==", this.props.route.params.email).onSnapshot(
+            db.collection('users').where("owner", "==", this.props.route.params.email).onSnapshot(
                 docs => {
                     let user = [];
                     docs.forEach( doc => {
