@@ -54,24 +54,24 @@ class Login extends Component{
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        backgroundColor: 'rgb(30, 51, 70)',
+        backgroundColor: 'rgb(33, 64, 92)',
         alignItems: 'center',
         justifyContent: 'center'
     },
     title:{
-        fontSize:40  
+        fontSize:30  
     },
     text:{
         backgroundColor:'rgba(204, 204 ,204, 0.1)' ,
-        fontSize: 40,
+        fontSize: 30,
         borderRadius: 10,
         marginTop: 5
      
     },
     text2:{
-        backgroundColor: 'rgb(24, 45, 62)',
+        backgroundColor: 'rgb(24, 51, 73)',
         borderRadius: 10,
-        fontSize: 40,
+        fontSize: 30,
         marginTop: 5
     }
 })
