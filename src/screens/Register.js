@@ -3,6 +3,7 @@ import {View, Text, TextInput, TouchableOpacity} from 'react-native'
 import {auth, db} from '../firebase/config'
 import Camara from "../components/Camara";
 import firebase from "firebase";
+import { StyleSheet } from "react-native-web";
 
 class Register extends Component{
     constructor(){
@@ -54,30 +55,31 @@ registerUser(email, pass, userName, bio, photo){
  
 render(){
     return(
-        <View>
-            <Text>Registro!</Text>
+
+        <View style={styles.container}>
+            <Text style={styles.title}>Registrate</Text>
             <Text>{this.state.errores}</Text>
 
             <View>
-                <TextInput
-                    placeholder='Email'
+                <TextInput style={styles.text}
+                    placeholder='Email:'
                     keyboardType="email-address"
                     onChangeText={text => this.setState({email:text})}
                     value={this.state.email}
                 />
-                <TextInput
-                    placeholder='Password'
+                <TextInput style={styles.text}
+                    placeholder='Password:'
                     keyboardType="default"
                     onChangeText={text => this.setState({pass:text})}
                     value={this.state.pass}
                 />
-                <TextInput
-                    placeholder='Username'
+                <TextInput style={styles.text}
+                    placeholder='Username:'
                     keyboardType="email-address"
                     onChangeText={text => this.setState({userName:text})}
                     value={this.state.userName}
                 />
-                <TextInput
+                <TextInput style={styles.text}
                     placeholder='Biografia'
                     keyboardType="default"
                     onChangeText={text => this.setState({bio:text})}
@@ -90,19 +92,44 @@ render(){
                         </View> 
                         :
                         <TouchableOpacity onPress={()=> this.setState({showCamara:true})}>
-                            <Text> Subir foto de perfil</Text>
-                        </TouchableOpacity>
+                            <Text style={styles.text} >Subir foto de perfil</Text>
+                        </TouchableOpacity> 
                     }
 
 
-            </View>
             <TouchableOpacity onPress={()=>this.registerUser(this.state.email, this.state.pass, this.state.userName, this.state.bio, this.state.photo )}>
-                <Text>Registrarme</Text>
+                <Text style={styles.text2}>Registrarme</Text>
             </TouchableOpacity>
-        <Text onPress={ ()=> this.props.navigation.navigate('Login')}>Ir a login</Text>            
+        <Text style={styles.text2}  onPress={ ()=> this.props.navigation.navigate('Login')}>Ir a login</Text>            
         </View>
-        
+        </View>
+
     )
 }
 }
+const styles = StyleSheet.create({
+    container:{
+        flex:1,
+        backgroundColor: 'rgb(30, 51, 70)',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    title:{
+        fontSize:40  
+    },
+    text:{
+        backgroundColor: 'rgba(204, 204 ,204, 0.1)',
+        fontSize: 40,
+        borderRadius: 10,
+        marginTop: 5
+     
+    },
+    text2:{
+        backgroundColor: 'rgb(24, 45, 62)',
+        borderRadius: 10,
+        fontSize: 40,
+        marginTop: 5
+     
+    }
+})
 export default Register
