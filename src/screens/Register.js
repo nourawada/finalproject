@@ -88,11 +88,11 @@ render(){
                  {
                         this.state.showCamara ?
                         <View>
-                            <Camara onImageUpload={url => this.onImageUpload(url)} style={{width: "40vw", heigth: "40vh", alignItems: 'center'}}/> 
+                            <Camara onImageUpload={url => this.onImageUpload(url)} style={{width: "125vw", heigth: "125vh"}}/> 
                         </View> 
                         :
                         <TouchableOpacity onPress={()=> this.setState({showCamara:true})}>
-                            <Text style={styles.text} >Foto de perfil</Text>
+                            <Text>Subir foto de perfil</Text>
                         </TouchableOpacity> 
                     }
 
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         flex:1,
         backgroundColor: 'rgb(33, 64, 92)',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     title:{
         fontSize:30  

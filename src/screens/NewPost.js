@@ -20,6 +20,7 @@ class NewPost extends Component {
     createPost(description, photo){
         db.collection('posts').add({
                 owner: auth.currentUser.email, //deberia ser el usuario registrado. auth.currentUser
+                userName: auth.currentUser.userName,
                 description: description,
                 photo: photo,
                 likes: this.state.likes,
@@ -29,6 +30,7 @@ class NewPost extends Component {
             .then(() => {
                 this.setState({
                     description:'',
+                    userName: '',
                     likes: [],
                     comentarios: []
                 })
@@ -52,7 +54,7 @@ class NewPost extends Component {
                 <Text>Hace un posteo</Text>
                 {
                 this.state.showCamera ?
-                <Camara onImageUpload={(url) => this.onImageUpload(url)}/>
+                <Camara onImageUpload={(url) => this.onImageUpload(url)} style={{width: "125vw", heigth: "125vh"}}/>
                 :
                 <View>
                     <Text> Nuevo posteo</Text>

@@ -36,7 +36,7 @@ class Home extends Component {
     render(){
         return(
             <View style={styles.conteiner} >
-                <Text>Lista de posteos</Text>
+                <Text style={styles.title}>Lista de posteos</Text>
                 <FlatList 
                         data={this.state.posts}
                         keyExtractor={ onePost => onePost.id.toString()}
@@ -48,12 +48,11 @@ class Home extends Component {
 };
 const styles = StyleSheet.create({
     conteiner:{flex:1,
-        backgroundColor: 'green'
+        backgroundColor: 'rgb(33, 64 ,92)'
 
     },
     title:{
         fontSize: 22,
-        color: "red"
     }
 })
 

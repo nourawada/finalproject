@@ -45,41 +45,76 @@ class Post extends Component {
     }
 
     render(){
+        console.log(this.props.postData.data);
         return(
-            <View>
-
+            <View style={styles.container2}>
+            <View style={styles.container}>
+            <Text style={styles.text2} onPress={()=>this.props.navigation.navigate('ProfileUser',  { email: this.props.postData.data.owner })} >
+                {this.props.postData.data.owner}
+            </Text>
                 <Image 
                     style={styles.photo}
                     source={{uri: this.props.postData.data.photo}}
                     resizeMode='cover'
                 />
           
-                <Text> {this.props.postData.data.description} </Text>
+                <Text style={styles.text}>{this.props.postData.data.owner} {this.props.postData.data.description} </Text>
                 
                 { this.state.likes ? 
                     <TouchableOpacity onPress={ ()=> this.unlike() }>
-                        <Text>No me gusta más</Text>
+                        <Text style={styles.text}>No me gusta más</Text>
                     </TouchableOpacity>
                     :
                     <TouchableOpacity onPress={ ()=> this.like() }>
-                        <Text>Me gusta</Text>
+                        <Text style={styles.text}>Me gusta</Text>
                     </TouchableOpacity>
                 }
-                 <Text> {this.state.numeroDeLikes} likes</Text>
-                 <Text onPress={()=>this.props.navigation.navigate('ProfileUser',  { email: this.props.postData.data.owner })} >
-                {this.props.postData.data.owner}
-            </Text>
+                 <Text style={styles.text}> {this.state.numeroDeLikes} likes</Text>
+                 
                  <TouchableOpacity onPress={()=>this.props.navigation.navigate('Comentarios', {id:this.props.postData.id})}>
-                    <Text>Ver Comentarios</Text>
+                    <Text style={styles.text}>Ver Comentarios</Text>
                  </TouchableOpacity>
+            </View>
             </View>
         )
     }
 }
 const styles = StyleSheet.create({
+    container2:{
+        
+        margin:30,
+        backgroundColor:'rgb(24, 49, 69)',
+        borderRadius: 10,
+    },
+    container:{
+        flex:1,
+        backgroundColor: 'rgb(24, 49, 69)',
+        margin:30,
+        justifyContent: 'center',
+        marginTop: 10,
+    },
+    title:{
+        fontSize:22  
+    },
+    text:{
+        fontSize: 18,
+        marginBottom: 8,
+        fontFamily: 'emoji',
+        marginLeft: 3    
+    },
+    text2:{
+        fontSize: 18,
+        marginTop: 5,
+        fontFamily: 'emoji',
+        marginLeft: 3  
+     
+    },
     photo:{
-        height:250,
-        width: 250
+        marginTop: 10,
+        marginBottom: 8,
+        height:300,
+        width: 300,
+        borderRadius: 8,
     }
 }) 
 
