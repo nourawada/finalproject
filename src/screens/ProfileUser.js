@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {auth, db} from '../firebase/config'
-import {View, Text, TouchableOpacity, StyleSheet} from "react-native";
+import {View, Text, TouchableOpacity, StyleSheet, Image} from "react-native";
 import {FlatList} from "react-native-web"
 import Post from "../components/Post";
 
@@ -49,11 +49,19 @@ class ProfileUser extends Component {
 
     render(){
         return(
-            <View>
-                    <Text> {this.state.user.userName}</Text>
-                    <Text>{this.state.user.bio}</Text>
-                    <Text>{this.state.user.owner}</Text>
-                    <Text>Cantidad de posts: {this.state.posts.length}</Text>
+        <View style={styles.conteiner}>
+                    <Image
+                        style={styles.foto}
+                        source={{ uri: this.state.user.photo }}
+                        resizeMode='cover'
+                        />
+                    <Text style={styles.text}>Username: {this.state.user.userName}</Text>
+                    <Text style={styles.text}>Email: {this.state.user.owner}</Text>
+                    <Text style={styles.text}>Biografia: {this.state.user.bio}</Text>
+                    <Text style={styles.text}>Cantidad de posts: {this.state.posts.length}</Text>
+
+
+            <Text style={styles.text3}>Lista de Posteos</Text>
             <FlatList 
                 data={this.state.posts}
                 keyExtractor={ onePost => onePost.id.toString()}
@@ -65,10 +73,47 @@ class ProfileUser extends Component {
 };
 
 const styles = StyleSheet.create({
+    foto:{
+        width: 90,
+        height: 90,
+        borderRadius: 150 / 2,
+        overflow: "hidden",
+        borderWidth: 1,
+        borderColor: "black",
+        marginTop: 10,
+        marginLeft: 10
+    },
+    conteiner:{
+        flex:1,
+        backgroundColor: 'rgb(33, 64 ,92)'
+    
+    },
     title:{
         fontSize: 22,
-        color: "red"
+    },
+    text:{
+        marginLeft: 10,
+        fontFamily: 'emoji',
+        fontSize: 18
+
+    },
+    text2:{
+        fontSize: 18,
+        fontFamily: 'emoji',
+        marginLeft: 10
+    },
+    text3:{
+        marginLeft: 150,
+        fontFamily: 'emoji',
+        fontSize: 18,
+        marginTop: 60
+
+    },
+    view:{
+        borderWidth:1
     }
-})
+    
+
+    })
 
 export default ProfileUser

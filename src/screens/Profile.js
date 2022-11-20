@@ -66,6 +66,8 @@ class Profile extends Component {
                 <Text>No hay perfil</Text> :
                 <Text style={styles.text2}>{this.state.user.userName} </Text>
             } 
+            <Text style={styles.text2}>{this.state.user.owner}</Text>
+            <Text style={styles.text2}>{this.state.user.bio}</Text>
             <View>
                 <Text style={styles.text} onPress={() => this.cerrarSesion()}>Cerrar sesión</Text>
             </View>  
@@ -106,7 +108,7 @@ const styles = StyleSheet.create({
     text:{
         marginLeft: 10,
         fontFamily: 'emoji',
-        fontSize: 16
+        fontSize: 17
 
     },
     text2:{
@@ -117,8 +119,8 @@ const styles = StyleSheet.create({
     text3:{
         marginLeft: 150,
         fontFamily: 'emoji',
-        fontSize: 16,
-        marginTop: 60
+        fontSize: 18,
+        marginTop: 50
 
     },
     
