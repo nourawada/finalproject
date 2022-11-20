@@ -20,7 +20,6 @@ class NewPost extends Component {
     createPost(description, photo){
         db.collection('posts').add({
                 owner: auth.currentUser.email, //deberia ser el usuario registrado. auth.currentUser
-                userName: auth.currentUser.userName,
                 description: description,
                 photo: photo,
                 likes: this.state.likes,
@@ -30,7 +29,6 @@ class NewPost extends Component {
             .then(() => {
                 this.setState({
                     description:'',
-                    userName: '',
                     likes: [],
                     comentarios: []
                 })

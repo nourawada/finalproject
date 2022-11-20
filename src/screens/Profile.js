@@ -55,21 +55,21 @@ class Profile extends Component {
     render(){
         console.log(this.state.user);
         return(
-            <View>
-            <View>
-                <Text onPress={() => this.cerrarSesion()}>Cerrar sesión</Text>
-            </View>
-            {
-                this.state.user.length == 0 ?
-                <Text></Text> :
-                <Text> Profile Name : {this.state.user.userName} </Text>
-            }
+            <View style={styles.conteiner}>
             <Image
                 style={styles.foto}
                 source={{ uri: this.state.user.photo }}
-                resizeMode='contain'
-                />
-            <Text> Lista de posteos</Text>
+                resizeMode='cover'
+                /> 
+            {
+                this.state.user.length == 0 ?
+                <Text>No hay perfil</Text> :
+                <Text style={styles.text2}>{this.state.user.userName} </Text>
+            } 
+            <View>
+                <Text style={styles.text} onPress={() => this.cerrarSesion()}>Cerrar sesión</Text>
+            </View>  
+            <Text style={styles.text3}>Lista de posteos</Text>
             <FlatList 
                 data={this.state.posts}
                 keyExtractor={ onePost => onePost.id.toString()}
@@ -86,9 +86,44 @@ const styles = StyleSheet.create({
         color: "red"
     },
     foto:{
-        width:250,
-        height:250
-    }
-})
+        width: 90,
+        height: 90,
+        borderRadius: 150 / 2,
+        overflow: "hidden",
+        borderWidth: 1,
+        borderColor: "black",
+        marginTop: 10,
+        marginLeft: 10
+    },
+    conteiner:{
+        flex:1,
+        backgroundColor: 'rgb(33, 64 ,92)'
+    
+    },
+    title:{
+        fontSize: 22,
+    },
+    text:{
+        marginLeft: 10,
+        fontFamily: 'emoji',
+        fontSize: 16
+
+    },
+    text2:{
+        fontSize: 18,
+        fontFamily: 'emoji',
+        marginLeft: 10
+    },
+    text3:{
+        marginLeft: 150,
+        fontFamily: 'emoji',
+        fontSize: 16,
+        marginTop: 60
+
+    },
+    
+
+    })
+
 
 export default Profile
