@@ -21,8 +21,9 @@ class Buscador extends Component {
 
 
 buscar(text){
-    
+ 
     this.setState({text:text})
+    console.log(text)
     db.collection('users').where('owner', '==', text).onSnapshot(
         docs => {
             let posts = [];
@@ -43,23 +44,24 @@ buscar(text){
 
 
 render(){
-    return( <View style={styles.container}>
-        <TextInput style={styles.text}
-            placeholder='Buscar usuarios..'
+    return( <View>
+        <TextInput
+            placeholder='buscador'
             keyboardType="default"
             onChangeText={text => this.buscar(text)}
             value={this.state.text}/>
             <TouchableOpacity onPress={()=>this.buscar(this.state.text)}>
-                        <Text style={styles.text}>Buscar</Text>
+                        <Text>Buscar</Text>
             </TouchableOpacity>
             <FlatList 
                         data={this.state.posts}
                         keyExtractor={ onePost => onePost.id.toString()}
-                        renderItem={ ({item})  =><TouchableOpacity onPress={()=>this.props.navigation.navigate('ProfileUser')}>
-                             { this.state.text == item.data.owner ?
-                     <Text style={styles.text}>{item.data.owner}</Text> : <Text>No exsiste el usuario</Text> }
-                        </TouchableOpacity> }
-                    /> 
+                        renderItem={ ({item})  => <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProfileUser',{ email: item.data.owner } )}>
+                        { this.state.text === item.data.owner ?
+                <Text >{item.data.owner}</Text> : <Text>No exsiste el usuario</Text> }
+                   </TouchableOpacity> }
+                            />
+                    
         </View>
         )
 
@@ -68,26 +70,6 @@ render(){
 
 
 }
-const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        backgroundColor: 'rgb(33, 64, 92)',
-        
-    },
-    title:{
-        fontSize:30  
-    },
-    text:{
-        fontSize: 20,
-        marginTop: 5
-     
-    },
-    text2:{
-        backgroundColor: 'rgb(24, 51, 73)',
-        borderRadius: 10,
-        fontSize: 30,
-        marginTop: 5
-    }
-})
+
 
 export default Buscador
