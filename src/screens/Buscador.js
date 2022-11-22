@@ -43,21 +43,21 @@ buscar(text){
 
 
 render(){
-    return( <View>
-        <TextInput
-            placeholder='buscador'
+    return( <View style={styles.container}>
+        <TextInput style={styles.text}
+            placeholder='Buscar usuarios..'
             keyboardType="default"
             onChangeText={text => this.buscar(text)}
             value={this.state.text}/>
             <TouchableOpacity onPress={()=>this.buscar(this.state.text)}>
-                        <Text>Buscar</Text>
+                        <Text style={styles.text}>Buscar</Text>
             </TouchableOpacity>
             <FlatList 
                         data={this.state.posts}
                         keyExtractor={ onePost => onePost.id.toString()}
                         renderItem={ ({item})  =><TouchableOpacity onPress={()=>this.props.navigation.navigate('ProfileUser')}>
                              { this.state.text == item.data.owner ?
-                     <Text>{item.data.owner}</Text> : <Text>no exsiste el usuario</Text> }
+                     <Text style={styles.text}>{item.data.owner}</Text> : <Text>No exsiste el usuario</Text> }
                         </TouchableOpacity> }
                     /> 
         </View>
@@ -68,6 +68,26 @@ render(){
 
 
 }
-
+const styles = StyleSheet.create({
+    container:{
+        flex:1,
+        backgroundColor: 'rgb(33, 64, 92)',
+        
+    },
+    title:{
+        fontSize:30  
+    },
+    text:{
+        fontSize: 20,
+        marginTop: 5
+     
+    },
+    text2:{
+        backgroundColor: 'rgb(24, 51, 73)',
+        borderRadius: 10,
+        fontSize: 30,
+        marginTop: 5
+    }
+})
 
 export default Buscador

@@ -41,35 +41,62 @@ class Comentarios extends Component {
 
     render(){
         return(
-            <View>
-                <Text> Comentarios del posteo actual </Text>
+            <View style={styles.container}>
+                <Text style={styles.text}>Comentarios del posteo actual </Text>
                 {this.state.comentarios.length === 0 ?
                 <View > 
-                    <Text> Aún no hay comentarios. Sé el primero en opinar </Text>  
+                    <Text style={styles.text}>Aún no hay comentarios. Sé el primero en opinar </Text>  
                 </View>
                 :
-                <FlatList 
+                <FlatList style={styles.text}
                     data={this.state.comentarios}
                     keyExtractor={ unComentario => unComentario.createdAt.toString()}
-                    renderItem={({item}) => <Text>{item.owner} comento: {item.comentario}</Text>}
+                    renderItem={({item}) => <Text style={styles.text2}>{item.owner} comento: {item.comentario}</Text>}
                 />
                 }
-            <TextInput 
+            <TextInput style={styles.text}
                 placeholder='Agregar comentario'
                 keyboardType='default'
                 onChangeText={comentario=> this.setState({comentario:comentario})}
                 value={this.state.comentario}
             />
+            
             {this.state.comentario === '' ?
                 <></>
                 :
                 <TouchableOpacity onPress={()=> this.subirMiComentario(this.state.comentario) }>
-                    <Text>Subir comentario</Text>
+                    <Text style={styles.text}>Subir comentario</Text>
                 </TouchableOpacity> 
        } 
         </View>
         );
     }
 };
+const styles = StyleSheet.create({
+    
+    container:{
+        flex:1,
+        backgroundColor: 'rgb(33, 64 ,92)'
+    
+    },
+    text:{
+        marginTop: 10,
+        fontFamily: 'emoji',
+        fontSize: 17
+
+    },
+    text2:{
+        fontSize: 18,
+        fontFamily: 'emoji',
+    },
+    text3:{
+        marginLeft: 100,
+        fontFamily: 'emoji',
+        fontSize: 24,
+
+    },
+    
+
+    })
 
 export default Comentarios
