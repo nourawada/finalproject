@@ -69,7 +69,7 @@ class Camara extends Component {
                             ref={metodosDeCamara => this.metodosDeCamara = metodosDeCamara }
                         />
                         <TouchableOpacity style={styles.button} onPress={()=>this.takePicture()}>
-                            <Text>Sacar foto</Text>
+                            <Text style={styles.text2}>Sacar foto</Text>
                         </TouchableOpacity>
                     </View>
             :
@@ -81,10 +81,10 @@ class Camara extends Component {
                 
                 <View style={styles.button}>
                 <TouchableOpacity onPress={()=>this.savePhoto()}>
-                <Text>Aceptar</Text>
+                <Text style={styles.text2}>Aceptar</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=>this.clearPhoto()}>
-                <Text>Rechazar</Text>
+                <Text style={styles.text2}>Rechazar</Text>
                 </TouchableOpacity>
                 </View>
             </View>
@@ -108,8 +108,12 @@ const styles = StyleSheet.create({
         marginTop: 20
     },
     preview:{
-        height:'40vh'
-    }
+        height:'60vh'
+    },
+    text2:{
+        fontSize: 20,
+        fontFamily: 'emoji',
+    },
 }) 
 
 export default Camara
