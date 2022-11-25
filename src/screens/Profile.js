@@ -47,6 +47,7 @@ class Profile extends Component {
                 }
             )
         }
+        
         cerrarSesion() {
             auth.signOut()
             this.props.navigation.navigate("Register")

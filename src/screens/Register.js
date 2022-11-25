@@ -2,8 +2,7 @@ import React, {Component} from "react";
 import {View, Text, TextInput, TouchableOpacity} from 'react-native'
 import {auth, db} from '../firebase/config'
 import Camara from "../components/Camara";
-import firebase from "firebase";
-import { StyleSheet } from "react-native-web";
+import { StyleSheet } from "react-native";
 
 class Register extends Component{
     constructor(){
@@ -45,6 +44,7 @@ registerUser(email, pass, userName, bio, photo){
        this.setState({errores: error.message})
      })
   }
+
   onImageUpload(url){
     this.setState({
         photo: url,
@@ -52,6 +52,7 @@ registerUser(email, pass, userName, bio, photo){
 
     })
   }
+
  
 render(){
     return(
@@ -72,6 +73,7 @@ render(){
                     keyboardType="default"
                     onChangeText={text => this.setState({pass:text})}
                     value={this.state.pass}
+                    secureTextEntry={true}
                 />
                 <TextInput style={styles.text}
                     placeholder='Username:'
@@ -92,15 +94,14 @@ render(){
                         </View> 
                         :
                         <TouchableOpacity onPress={()=> this.setState({showCamara:true})}>
-                            <Text>Subir foto de perfil</Text>
+                            <Text style={styles.text}>Subir foto de perfil</Text>
                         </TouchableOpacity> 
                     }
-
 
             <TouchableOpacity onPress={()=>this.registerUser(this.state.email, this.state.pass, this.state.userName, this.state.bio, this.state.photo )}>
                 <Text style={styles.text2}>Registrarme</Text>
             </TouchableOpacity>
-        <Text style={styles.text2}  onPress={ ()=> this.props.navigation.navigate('Login')}>Ir a login</Text>            
+        <Text style={styles.text2} onPress={ ()=> this.props.navigation.navigate('Login')}>Ir a login</Text>            
         </View>
         </View>
 

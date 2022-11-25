@@ -39,8 +39,11 @@ class Camara extends Component {
            const refStorage=storage.ref(`photos/${Date.now()}.jpg`)
            refStorage.put(image)
                 .then(()=>{
+                    //la url publica de foto
                    refStorage.getDownloadURL()
                         .then(url => {
+                            //la url que recibimos la vamos a pasar a traves de onImageUpload al otro componente
+                            //esta url viene del componente anterior
                             this.props.onImageUpload(url);
                          })
                  })
