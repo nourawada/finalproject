@@ -97,10 +97,17 @@ render(){
                             <Text style={styles.text}>Subir foto de perfil</Text>
                         </TouchableOpacity> 
                     }
-
-            <TouchableOpacity onPress={()=>this.registerUser(this.state.email, this.state.pass, this.state.userName, this.state.bio, this.state.photo )}>
+                    {
+                this.state.email =="" || this.state.contraseña =="" || this.state.userName == "" ? 
+                    <TouchableOpacity>
+                        <Text style={styles.text2}>Registrarme</Text>
+                    </TouchableOpacity>
+                :
+                <TouchableOpacity onPress={()=>this.registerUser(this.state.email, this.state.pass, this.state.userName, this.state.bio, this.state.photo )}>
                 <Text style={styles.text2}>Registrarme</Text>
             </TouchableOpacity>
+            }
+
         <Text style={styles.text2} onPress={ ()=> this.props.navigation.navigate('Login')}>Ir a login</Text>            
         </View>
         </View>
